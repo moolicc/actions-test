@@ -4,9 +4,9 @@ name: CI
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "main" ]
+  pull_request_target:
+    types:
+      - closed
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -15,6 +15,7 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   build:
+    if: github.event.pull_request.merged == true
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -36,4 +37,4 @@ jobs:
       - name: test
         shell: pwsh
         run: |
-          ./test.ps1 ${{ github.event.pull_request.labels }}
+          ./test.ps1 hi ${{ github.event.pull_request.labels }}
