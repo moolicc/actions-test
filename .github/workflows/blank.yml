@@ -37,4 +37,4 @@ jobs:
       - name: test
         shell: pwsh
         run: |
-          ./test.ps1 hi ${{ toJson(github.event.pull_request.labels.*.name) }}
+          ./test.ps1 hi "${{ toJson(github.event.pull_request.labels.*.name) }}"
