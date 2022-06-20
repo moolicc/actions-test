@@ -32,3 +32,8 @@ jobs:
         run: |
           echo Add other actions to build,
           echo ${{ github.event.pull_request.labels.* }}
+          
+      - name: test
+        shell: pwsh
+        run: |
+          ./test.ps1 ${{ github.event.pull_request.labels }}
