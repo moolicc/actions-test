@@ -38,4 +38,4 @@ jobs:
       - name: test
         shell: pwsh
         run: |
-          ./test.ps1 hi "${{ steps.pr-labels.outputs.labels }}"
+          ./test.ps1 hi ${{ steps.pr-labels.outputs.labels }}
