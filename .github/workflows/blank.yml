@@ -21,14 +21,15 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Get PR labels
+        id: pr-labels
+        uses: joerick/pr-labels-action@v1.0.6
+        
+        
       - uses: actions/checkout@v3
-
-      # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
 
-      # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
           echo Add other actions to build,
@@ -37,4 +38,4 @@ jobs:
       - name: test
         shell: pwsh
         run: |
-          ./test.ps1 hi "${{ toJson(github.event.pull_request.labels.*.name) }}"
+          ./test.ps1 hi "${{ steps.pr-labels.outputs.labels }}"
