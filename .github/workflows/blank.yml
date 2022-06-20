@@ -32,7 +32,7 @@ jobs:
       - name: Run a multi-line script
         run: |
           echo Add other actions to build,
-          echo ${{ toJson(github.event.pull_request.labels.*.name) }}
+          echo "${{ toJson(github.event.pull_request.labels.*.name) }}"
           
       - name: test
         shell: pwsh
